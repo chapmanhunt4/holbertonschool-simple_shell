@@ -13,7 +13,7 @@ int main(void)
     char *args[10];
     int i;
 
-    printf("Enter a command\n");
+    fprintf(stdin, "Enter a command\n");
     while (getline(&buffer, &bufsize, stdin) != -1) {
         /* Remove the trailing newline character */
         buffer[strcspn(buffer, "\n")] = '\0';
