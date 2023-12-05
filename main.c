@@ -13,12 +13,13 @@ int main(void)
     char *args[10];
     int i;
 
-    if (isatty(STDIN_FILENO))
-	    printf("Enter a command\n");
-    while (getline(&buffer, &bufsize, stdin) != -1)
+    while (1)
     {
-	    printf("Enter a command\n");
-	    getline(&buffer, &bufsize, stdin);
+	if (isatty(STDIN_FILENO))
+		printf("Enter a command\n");
+
+	getline(&buffer, &bufsize, stdin);
+
         /* Remove the trailing newline character */
         buffer[strcspn(buffer, "\n")] = '\0';
         /* If we don't set i to 0, it will only count up every time */
@@ -51,7 +52,6 @@ int main(void)
         }
         free(path_copy);
         path_copy = strdup(path);
-        printf("Enter a command\n");
     }
     free(buffer);
     free(path_copy);
