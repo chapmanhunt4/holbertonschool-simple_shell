@@ -13,8 +13,12 @@ int main(void)
     char *args[10];
     int i;
 
-    fprintf(stdin, "Enter a command\n");
-    while (getline(&buffer, &bufsize, stdin) != -1) {
+    if (isatty(STDIN_FILENO))
+	    printf("Enter a command\n");
+    while (getline(&buffer, &bufsize, stdin) != -1)
+    {
+	    printf("Enter a command\n");
+	    getline(&buffer, &bufsize, stdin);
         /* Remove the trailing newline character */
         buffer[strcspn(buffer, "\n")] = '\0';
         /* If we don't set i to 0, it will only count up every time */
@@ -39,7 +43,7 @@ int main(void)
                 /* debugging. failure message, probably change this? */
                 printf("Usage: copy source_file destination_file\n");
             }
-        }
+	}
         else
         {
             /* Execute the command */
