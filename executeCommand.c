@@ -42,7 +42,8 @@ void executeCommand(__attribute__((unused))char *command, char *args[], char *pa
 			if (!command_found)
 			{
 				fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-				exit(127); // Exit with status 127 for command not found
+				exit(127);
+				/* Exit with status 127 for command not found */
 			}
 			printf("%s\n", args[0]);
 			exit(EXIT_FAILURE);
