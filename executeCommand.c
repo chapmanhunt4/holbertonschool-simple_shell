@@ -7,9 +7,10 @@
  * @path_copy: A copy of the path environment variable.
 */
 void executeCommand(__attribute__((unused))char *command, char *args[], char *path_copy)
-{
-    pid_t pid = fork();
+{	
+	pid_t pid = fork();
     if (pid == 0) { /* Child process */
+	    printf("Successfully forking \n");
         if (strchr(args[0], '/') != NULL) {
             /* Execute the command directly if it contains '/' */
             if (execve(args[0], args, NULL) == -1)
@@ -29,8 +30,8 @@ void executeCommand(__attribute__((unused))char *command, char *args[], char *pa
                 cmd[strcspn(cmd, "\n")] = '\0';
                 if (access(cmd, X_OK) == 0)
                 {
-                    /* Create an array to store the environment variables */
-                    char *envp[] = {NULL};
+			/* Create an array to store the enviornment variables */
+			char *envp[] = {NULL};
                     /* Execute the command with arguments and environment */
                     if (execve(cmd, args, envp) == -1)
                     {

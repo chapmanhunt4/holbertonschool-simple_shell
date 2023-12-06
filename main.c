@@ -16,9 +16,10 @@ int main(void)
     while (1)
     {
 	if (isatty(STDIN_FILENO))
-		printf("Enter a command\n");
+		puts("Enter a command\n");
 
 	getline(&buffer, &bufsize, stdin);
+	printf("%s\n", buffer);
 
         /* Remove the trailing newline character */
         buffer[strcspn(buffer, "\n")] = '\0';
