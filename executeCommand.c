@@ -9,6 +9,7 @@
 void executeCommand(__attribute__((unused))char *command, char *args[], char *path_copy)
 {
 	pid_t pid = fork();
+	int command_found = 0;
 	if (pid == 0)
 	{ 
 		/* Child Process right here */
@@ -30,12 +31,18 @@ void executeCommand(__attribute__((unused))char *command, char *args[], char *pa
 				sprintf(cmd, "%s/%s", token, args[0]);
 				if (access(cmd, X_OK) == 0)
 				{
+					command_found = 1;
 					execve(cmd, args, NULL);
 					perror("execve");
 					exit(EXIT_FAILURE);
 				}
 				free(cmd);
 				token = strtok(NULL, ":");
+			}
+			if (!command_found)
+			{
+				fprintf(stderr, "%s: not found\n", args[0]);
+                exit(127);
 			}
 			printf("%s\n", args[0]);
 			exit(EXIT_FAILURE);
