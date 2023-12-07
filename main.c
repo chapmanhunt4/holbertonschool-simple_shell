@@ -58,7 +58,7 @@ int main(void)
 				else
 				{
 					/*This is an error */
-					printf("Usage: copy source_file destination_file\n");
+					printf("Unable to copy file.\n");
 				}
 			}
 			else
@@ -70,5 +70,5 @@ int main(void)
 
 	free(buffer);
 	free(path_copy);
-	return 0;
+	return (0);
 }
