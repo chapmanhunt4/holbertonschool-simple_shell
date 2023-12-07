@@ -4,9 +4,10 @@
  * @command: The command to execute.
  * @args: An array of strings containing the command's arguments
  * @path_copy: A copy of the path environment variable.
+ * Return: 0 on success
  */
 
-void executeCommand(__attribute__((unused))char *command, char *args[], char *path_copy)
+int executeCommand(__attribute__((unused))char *command, char *args[], char *path_copy)
 {
 	pid_t pid = fork();
 	int command_found = 0;
@@ -45,8 +46,6 @@ void executeCommand(__attribute__((unused))char *command, char *args[], char *pa
 				exit(127);
 				/* Exit with status 127 for command not found */
 			}
-			printf("%s\n", args[0]);
-			exit(EXIT_FAILURE);
 		}
 	}
 	else if (pid > 0)
@@ -54,10 +53,15 @@ void executeCommand(__attribute__((unused))char *command, char *args[], char *pa
 		/* This is the parent process */
 		int status;
 		wait(&status);
+		if (WIFEXITED(status))
+			{
+				return (WEXITSTATUS(status));
+			}
 	}
 	else
 	{
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
+	return (0);
 }
