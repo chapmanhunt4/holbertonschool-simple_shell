@@ -49,6 +49,12 @@ int main(void)
 
 		if (args[0] != NULL)
 		{
+			if (strcmp(args[0], "exit") == 0)
+			{
+				/*We're quitting */
+				free(buffer);
+				exit(0);
+			}
 			if (strcmp(args[0], "copy") == 0)
 			{
 				if (args[1] != NULL && args[2] != NULL)
