@@ -11,6 +11,7 @@ int executeCommand(__attribute__((unused))char *command, char *args[], char *pat
 {
 	pid_t pid = fork();
 	int command_found = 0;
+
 	if (pid == 0)
 	{ 
 		/* Child Process right here */
