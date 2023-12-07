@@ -11,7 +11,6 @@ int executeCommand(__attribute__((unused))char *command, char *args[], char *pat
 {
 	pid_t pid = fork();
 	int command_found = 0;
-	int status = 0;
 	int returnCode = 0;
 	if (pid == 0)
 	{ 
