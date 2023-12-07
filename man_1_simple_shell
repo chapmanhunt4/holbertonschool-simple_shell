@@ -1,0 +1,17 @@
+.\" Manpage for Simple Shell.
+.\"
+.TH man 1 "06 Dec 2023" "1.0" "shell man page"
+
+.SH NAME
+sh \- recreation of simple shell
+.SH SYNOPSIS
+
+.SH DESCRIPTION
+sh is a recreation of a simple shell, which prompts a user for input and executes commands based on that input. This simple shell works by searching the user's environment for executable commands stored in files.
+.SH OPTIONS
+.B
+.IP "exit"
+typing "exit" into the shell will exit the simple shell environment
+.B
+.SH RETURN VALUE
+The main function in this shell is a void function, meaning it will not return any specific values, and instead executes user commands.
