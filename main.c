@@ -52,8 +52,8 @@ int main(void)
 			if (strcmp(args[0], "exit") == 0)
 			{
 				/*We're quitting */
-				if (!buffer)
 				free(buffer);
+				free(path_copy);
 				exit(0);
 			}
 			if (strcmp(args[0], "copy") == 0)
