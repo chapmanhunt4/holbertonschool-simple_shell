@@ -52,6 +52,7 @@ int main(void)
 			if (strcmp(args[0], "exit") == 0)
 			{
 				/*We're quitting */
+				if (!buffer)
 				free(buffer);
 				exit(0);
 			}
