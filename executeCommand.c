@@ -11,7 +11,8 @@ int executeCommand(__attribute__((unused))char *command, char *args[], char *pat
 {
 	pid_t pid = fork();
 	int command_found = 0;
-
+	int status = 0;
+	int returnCode = 0;
 	if (pid == 0)
 	{ 
 		/* Child Process right here */
@@ -19,6 +20,7 @@ int executeCommand(__attribute__((unused))char *command, char *args[], char *pat
 		{
 			execve(args[0], args, NULL);
 			perror("execve");
+			returnCode = 1;
 			exit(EXIT_FAILURE);
 		}
 		else
@@ -36,6 +38,7 @@ int executeCommand(__attribute__((unused))char *command, char *args[], char *pat
 					command_found = 1;
 					execve(cmd, args, NULL);
 					perror("execve");
+					returnCode = 1;
 					exit(EXIT_FAILURE);
 				}
 				free(cmd);
@@ -44,6 +47,7 @@ int executeCommand(__attribute__((unused))char *command, char *args[], char *pat
 			if (!command_found)
 			{
 				fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+				returnCode = 127;
 				exit(127);
 				/* Exit with status 127 for command not found */
 			}
@@ -56,13 +60,14 @@ int executeCommand(__attribute__((unused))char *command, char *args[], char *pat
 		wait(&status);
 		if (WIFEXITED(status))
 			{
-				return (WEXITSTATUS(status));
+				returnCode = (WEXITSTATUS(status));
 			}
 	}
 	else
 	{
 		perror("fork");
+		returnCode = 1;
 		exit(EXIT_FAILURE);
 	}
-	return (0);
+	return (returnCode);
 }
