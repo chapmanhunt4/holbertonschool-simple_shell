@@ -1,5 +1,7 @@
 #include "header.h"
 
+extern char **environ;
+
 /**
  * main - Recreation of shell.
  *
@@ -49,6 +51,11 @@ int main(void)
 
 		if (args[0] != NULL)
 		{
+			if (strcmp(args[0], "env") == 0)
+			{
+				for (i = 0; environ[i] != NULL; i++)
+					printf("%s\n", environ[i]);
+			}
 			if (strcmp(args[0], "exit") == 0)
 			{
 				/*We're quitting */
