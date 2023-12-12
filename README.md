@@ -38,4 +38,5 @@ ____
 ##### copyFile.c - Simple function that takes a file and copies it.
 ## Flowchart
 
-<img src="https://docs.google.com/drawings/d/1M1wMgA3R6Mg9JBor2gl3jRU1vyzcAPqbprLeMRyIblE/edit"/>
+![Untitled drawing](https://github.com/chapmanhunt4/holbertonschool-simple_shell/assets/67441084/3ac4206d-f546-48fd-aa58-20fdbe71bf9c)
+
